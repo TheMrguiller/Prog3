@@ -11,8 +11,8 @@ public class CocheJuego extends Coche {
 	}
 	public void mueve( double tiempoDeMovimiento ) {
 	
-		posX= getMiVelocidad() * tiempoDeMovimiento* Math.cos(Math.toRadians(miDireccionActual));//Para cambiar a radianes
-		posY = getMiVelocidad() * tiempoDeMovimiento * Math.sin(Math.toRadians(miDireccionActual));
+		posX=posX + getMiVelocidad() * tiempoDeMovimiento* Math.cos(Math.toRadians(miDireccionActual));//Para cambiar a radianes
+		posY =posY + getMiVelocidad() * tiempoDeMovimiento * Math.sin(Math.toRadians(miDireccionActual));
 		
 	 }
 }

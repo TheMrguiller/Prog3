@@ -40,8 +40,9 @@ public class VentanaJuego extends JFrame {
 		label.setVisible(true);
 		label.setOpaque(false);
 		panelprincipal.setOpaque(false);
+		panelprincipal.setLayout(null);
 		panelinferiro.setOpaque(false);
-		
+		label.setRotacion(Math.toRadians(90));
 		//Elementos
 		CocheJuego coche = new CocheJuego("Piloto", label);
 		
@@ -59,7 +60,7 @@ public class VentanaJuego extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				coche.acelera(5);
+				coche.acelera(1);
 				
 			}
 		});
@@ -67,7 +68,7 @@ public class VentanaJuego extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				coche.acelera(-5);
+				coche.acelera(-1);
 				
 			}
 		});
@@ -75,8 +76,8 @@ public class VentanaJuego extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				coche.giro(-10);
-				label.setRotacion(label.getRotacion() -0.5);
+				coche.giro(-20);
+				label.setRotacion(Math.toRadians(90)+Math.toRadians(coche.miDireccionActual));
 				
 				
 			}
@@ -85,8 +86,8 @@ public class VentanaJuego extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				coche.giro(10);
-				label.setRotacion(label.getRotacion()+0.5);
+				coche.giro(20);
+				label.setRotacion(Math.toRadians(90)+Math.toRadians(coche.miDireccionActual));
 				
 			
 			}
@@ -96,12 +97,14 @@ public class VentanaJuego extends JFrame {
 			public void run() {
 				try {
 					while(sigue) {
-					Thread.sleep(500);
-					tiempo= tiempo + 500;
+					Thread.sleep(100);
+					tiempo= tiempo + 100;
 					coche.mueve(tiempo/1000);
 					label.setLocation(coche.posX,coche.posY );
-					
+					 
 					System.out.println(label.getLocation());
+					System.out.println(Math.toDegrees(label.getRotacion())+"Label");
+					System.out.println(coche.miDireccionActual+"Punto en el espacio");
 					label.revalidate();
 					}
 				} catch (InterruptedException e) {
@@ -113,7 +116,26 @@ public class VentanaJuego extends JFrame {
 		
 				
 	};
+		Thread hiloChoque = new Thread() {
+			public void run() {
+				try {
+					while(sigue) {
+					Thread.sleep(100);
+					if(coche.posX<=0 || coche.posX>=494 || coche.posY<=0 ||coche.posY>=435) {
+						coche.setMiDireccionActual(coche.getMiDireccionActual()+Math.toRadians(180));
+						
+						label.setRotacion(coche.getMiDireccionActual()+Math.toRadians(180));
+					}
+					
+					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
 	hilo.start();
+	hiloChoque.start();
 	addWindowListener(new WindowAdapter() {
 		
 		

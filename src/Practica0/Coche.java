@@ -51,8 +51,8 @@ public class Coche {
 	public Coche(String piloto) {
 		miVelocidad=0;
 		miDireccionActual=0;
-		posX=0;
-		posY=0;
+		posX=1;
+		posY=1;
 		this.piloto=piloto;
 	}
 	@Override
