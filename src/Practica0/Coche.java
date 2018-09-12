@@ -2,7 +2,7 @@ package Practica0;
 
 
 public class Coche {
-	private double miVelocidad; // Velocidad en pixels/segundo
+	protected double miVelocidad; // Velocidad en pixels/segundo
 	 protected double miDireccionActual; // Dirección en la que estoy mirando en grados (de 0 a 360)
 	 protected double posX; // Posición en X (horizontal)
 	 protected double posY; // Posición en Y (vertical)
@@ -69,8 +69,8 @@ public class Coche {
 	}
 	public void mueve( double tiempoDeMovimiento ) {
 		
-		posX= miVelocidad * tiempoDeMovimiento* Math.cos(Math.toRadians(miDireccionActual));//Para cambiar a radianes
-		posY = miVelocidad * tiempoDeMovimiento * Math.sin(Math.toRadians(miDireccionActual));
+		posX=posX+ miVelocidad * tiempoDeMovimiento* Math.cos(Math.toRadians(miDireccionActual));//Para cambiar a radianes
+		posY =posY+ miVelocidad * tiempoDeMovimiento * Math.sin(Math.toRadians(miDireccionActual));
 		
 	 }
 
