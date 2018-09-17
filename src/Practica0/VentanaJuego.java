@@ -103,8 +103,8 @@ public class VentanaJuego extends JFrame {
 					label.setLocation(coche.posX,coche.posY );
 					 
 					
-					System.out.println(Math.toDegrees(label.getRotacion())+"Label");
-					System.out.println(coche.miDireccionActual+"Punto en el espacio");
+					
+				
 					label.revalidate();
 					}
 				} catch (InterruptedException e) {
@@ -120,21 +120,30 @@ public class VentanaJuego extends JFrame {
 			public void run() {
 				try {
 					while(sigue) {
-					Thread.sleep(100);double velocidad = coche.getMiVelocidad();
+					
+					double direccionanterior=coche.miDireccionActual;
+					double direccionnueva=900;
+					double velocidad = coche.getMiVelocidad();
+					if(direccionanterior != direccionnueva) {
 					if(coche.posX<=0 || coche.posY<=0 ) {
 						
-						coche.setMiDireccionActual(0);
+						
 						coche.setMiDireccionActual(coche.getMiDireccionActual()+Math.toRadians(180));
 						
-						coche.setMiVelocidad(velocidad);
+						
 						label.setRotacion(Math.toRadians(90)+Math.toRadians(coche.miDireccionActual));
 					}
-					if( coche.posX>=350 ||coche.posY>=350) {
-						coche.setMiDireccionActual(0);
+					if(coche.posX>=350 || coche.posY>=350 ) {
+						
+						
 						coche.setMiDireccionActual(coche.getMiDireccionActual()+Math.toRadians(180));
-						coche.setMiVelocidad(velocidad);
+						
+						
 						label.setRotacion(Math.toRadians(90)+Math.toRadians(coche.miDireccionActual));
 					}
+					}
+					direccionnueva=coche.miDireccionActual;
+					Thread.sleep(10);
 					}
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block

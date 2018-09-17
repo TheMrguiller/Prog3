@@ -13,5 +13,7 @@ public class CocheJuego extends Coche {
 		posX=posX+ miVelocidad * tiempoDeMovimiento* Math.cos(Math.toRadians(miDireccionActual));//Para cambiar a radianes
 		posY =posY+ miVelocidad * tiempoDeMovimiento * Math.sin(Math.toRadians(miDireccionActual));
 		label.setLocation(this.posX,this.posY );
+		
+		
 	 }
 }
