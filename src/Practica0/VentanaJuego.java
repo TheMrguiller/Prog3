@@ -97,8 +97,8 @@ public class VentanaJuego extends JFrame {
 			public void run() {
 				try {
 					while(sigue) {
-					Thread.sleep(100);
-					tiempo= tiempo + 100;
+					Thread.sleep(200);
+					tiempo= tiempo + 200;
 					coche.mueve(tiempo/1000);
 					label.setLocation(coche.posX,coche.posY );
 					 
@@ -122,28 +122,33 @@ public class VentanaJuego extends JFrame {
 					while(sigue) {
 					
 					double direccionanterior=coche.miDireccionActual;
-					double direccionnueva=900;
+					double direccionnueva=900;//Ejemplo imposible
 					double velocidad = coche.getMiVelocidad();
 					if(direccionanterior != direccionnueva) {
 					if(coche.posX<=0 || coche.posY<=0 ) {
 						
-						
+						coche.setMiVelocidad(0);
 						coche.setMiDireccionActual(coche.getMiDireccionActual()+Math.toRadians(180));
-						
-						
 						label.setRotacion(Math.toRadians(90)+Math.toRadians(coche.miDireccionActual));
+						coche.setPosX(coche.posX + 1);
+						coche.setPosY( coche.posY+1 );
+						Thread.sleep(10);
+						coche.setMiVelocidad(velocidad);
 					}
 					if(coche.posX>=350 || coche.posY>=350 ) {
 						
-						
+						coche.setMiVelocidad(0);
 						coche.setMiDireccionActual(coche.getMiDireccionActual()+Math.toRadians(180));
-						
-						
 						label.setRotacion(Math.toRadians(90)+Math.toRadians(coche.miDireccionActual));
+						
+						coche.setPosX(coche.posX - 1);
+						coche.setPosY( coche.posY-1 );
+						Thread.sleep(10);
+						coche.setMiVelocidad(velocidad);
 					}
 					}
 					direccionnueva=coche.miDireccionActual;
-					Thread.sleep(10);
+					Thread.sleep(20);
 					}
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block

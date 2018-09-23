@@ -61,6 +61,7 @@ public class VentanaConfirmacionLenta extends JFrame {
 		Thread hilo = new Thread() {
 			public void run(){
 				try {
+					
 					confirmar.setEnabled(false);
 					Thread.sleep( 5000 + 1000*r.nextInt(6) );
 					confirmar.setEnabled(true);
