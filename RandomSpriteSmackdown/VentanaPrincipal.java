@@ -5,7 +5,7 @@ import java.awt.GridLayout;
 
 import javax.swing.*;
 
-import LabelEspeciales.FondoSwing;
+
 
 
 public class VentanaPrincipal extends JFrame{
@@ -13,7 +13,7 @@ public class VentanaPrincipal extends JFrame{
 	public VentanaPrincipal() {
 		
 		//Iniciacion de ventana
-		(new ImageIcon("src\\Fondo.gif"));
+		//(new ImageIcon("src\\Fondo.gif"));
 		FondoSwing panel = new FondoSwing();
 		panel.setLayout(new BorderLayout());
 		panel.Imagen("src\\fondo dos.JPG");
@@ -33,8 +33,9 @@ public class VentanaPrincipal extends JFrame{
 		//Modificaciones
 			panelinterior.setLayout(new GridLayout());
 		//Añadir los contenedores
-		add(paneliz);
-		add(panelde);
+		add(panel)
+		panel.add(paneliz);
+		panel.add(panelde);
 		paneliz.add(panelinterior,BorderLayout.CENTER);
 		panelinterior.add(botonHistoria);
 		panelinterior.add(botonPractica);
